@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Aux from "../../hoc/Aux";
+
+import Aux from '../Aux/Aux';
 import classes from './Layout.css';
-import Toolbar from "../Navigation/Toolbar/Toolbar";
-import SideDrawer from "../SideDrawer/SideDrawer";
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
 class Layout extends Component {
     state = {
@@ -15,21 +16,23 @@ class Layout extends Component {
 
     sideDrawerToggleHandler = () => {
         this.setState((prevState) => {
-            return {showSideDrawer: !prevState.showSideDrawer}
+            return {showSideDrawer: !prevState.showSideDrawer};
         });
     };
 
     render() {
-        return (<Aux>
+        return (
+            <Aux>
                 <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler}/>
-                <SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerClosedHandler}/>
+                <SideDrawer
+                    open={this.state.showSideDrawer}
+                    closed={this.sideDrawerClosedHandler}/>
                 <main className={classes.Content}>
-                    {this.children}
+                    {this.props.children}
                 </main>
             </Aux>
         )
     }
-
 }
 
 export default Layout;
